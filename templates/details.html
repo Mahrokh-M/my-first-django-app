@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Details</h3>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <p class="h5"><strong>Name:</strong> {{id.name}}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="h5"><strong>Age:</strong> {{id.age}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <p class="h5"><strong>Created:</strong> {{id.created}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer bg-light">
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'update' id.id %}" class="btn btn-primary px-4">
+                    <i class="bi bi-pencil-square"></i> Update
+                </a>
+                <a href="{% url 'delete' id.id %}" class="btn btn-danger px-4">
+                    <i class="bi bi-trash"></i> Delete
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

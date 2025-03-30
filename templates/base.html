@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous" />
+
+    <style>
+      .jumbotron {
+        padding: 20px;
+        background-color: #e9ecef;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    {% include 'navbar.html' %}
+
+    <div class="jumbotron">
+      {% include 'messages.html' %}
+      {% block content %}{% endblock %}
+    </div>
+
+    <!-- Custom form validation script -->
+    <script>
+      (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+          var forms = document.getElementsByClassName('needs-validation');
+          Array.prototype.filter.call(forms, function (form) {
+            form.addEventListener('submit', function (event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    </script>
+
+    <!-- ✅ Bootstrap JS (enables alert close, dropdowns, etc.) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+kDq2fkDmfE2YsiKp4+Uab69A5Uytz0eHZm9GgVFMFQnEjgNbsTpSG7XQx5XhE"
+      crossorigin="anonymous"></script>
+  </body>
+</html>

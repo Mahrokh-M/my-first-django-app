@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<main class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="display-4">Welcome to Our Directory</h1>
+
+    {% if user.is_authenticated %}
+    <button
+      type="button"
+      class="btn btn-success btn-lg rounded-pill shadow-sm d-flex align-items-center gap-2 px-4 py-2"
+      onclick="location.href='{% url 'create' %}'">
+      <i class="bi bi-person-plus-fill"></i>
+      <span>Add Person</span>
+    </button>
+    {% endif %}
+  </div>
+
+  {% if people %}
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for x in people %}
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ x.name }}</h5>
+          <p class="card-text text-muted">Some brief info here...</p>
+          <a
+            href="{% url 'details' x.id %}"
+            class="btn btn-outline-primary stretched-link">
+            View Details
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="text-center py-5 my-5 bg-light rounded">
+    <h3>No people found</h3>
+    <p class="lead">Get started by adding your first person</p>
+
+    {% if user.is_authenticated %}
+    <button
+      type="button"
+      class="btn btn-success btn-lg rounded-pill shadow-sm d-flex align-items-center gap-2 px-4 py-2"
+      onclick="location.href='{% url 'create' %}'">
+      <i class="bi bi-person-plus-fill"></i>
+      <span>Add Person</span>
+    </button>
+    {% endif %}
+  </div>
+  {% endif %}
+</main>
+{% endblock %}
